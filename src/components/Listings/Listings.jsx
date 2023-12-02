@@ -81,7 +81,7 @@ function Item() {
         alert("Bid successfully added!");
 
         fetchUserDetails();
-        window.location.reload();
+        // window.location.reload();
       } else {
         const errorResponse = await response.json();
         setErrorResponse(errorResponse);
