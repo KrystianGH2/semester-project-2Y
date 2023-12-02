@@ -14,7 +14,7 @@ function LoginLogic() {
   // This navigates to the home page after a successful login
   const navigateToHome = () => {
     setTimeout(() => {
-      navigate("/home");
+      navigate("/");
       window.location.reload();
     }, 2000);
   };
