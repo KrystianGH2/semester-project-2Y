@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { Link } from "lucide-react";
 
 const CreateUI = ({
   formData,
@@ -139,17 +138,12 @@ const CreateUI = ({
                       key={id}
                       className="flex flex-col border rounded-lg overflow-hidden shadow-lg"
                     >
-                      {console.log(">>>>>>>>>>>>>>>>>>><<<<<image", image)}
-                      {image && (
-                        <Link to={`/listings/${id}`}>
-                          <img
-                            className="w-full h-48 object-cover"
-                            src={image}
-                            alt={title}
-                          />
-                        </Link>
-                      )}
-                      <div className=" flex flex-col justify-between p-6">
+                      <img
+                        className="w-full h-48 object-cover"
+                        src={image}
+                        alt={title}
+                      />
+                      <div className=" flex flex-col p-6">
                         <small>Created at {formatDate(date)} </small>
                         <h2 className="text-xl font-semibold mt-2">{title}</h2>
                         <p className="text-gray-600 mt-2">{description}</p>
