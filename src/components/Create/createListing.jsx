@@ -3,7 +3,7 @@ import CreateUI from "./createListingUi";
 
 function Create() {
   // State to manage form data
-  const [displayCount, setDisplayCount] = useState(20);
+  const [displayCount, setDisplayCount] = useState(10);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -20,7 +20,7 @@ function Create() {
     // Simulate a delay of 2 seconds
     setTimeout(() => {
       // Update displayCount and reset loading state
-      setDisplayCount((prevCount) => prevCount + 20);
+      setDisplayCount((prevCount) => prevCount + 10);
       setIsButtonLoading(false);
     }, 2000);
   };
@@ -104,7 +104,6 @@ function Create() {
   };
 
   const parsedListings = JSON.parse(localStorage.getItem("myListings"));
-  console.log(">>>>>>>>parsed", parsedListings);
   return (
     <CreateUI
       parsedListings={parsedListings}
