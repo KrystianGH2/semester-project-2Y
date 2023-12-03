@@ -129,12 +129,12 @@ const CreateUI = ({
             </h1>
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 ">
             {Array.isArray(parsedListings) &&
               parsedListings
                 .slice(0, displayCount)
                 .map(
-                  ({ id, title, image, description, _count, seller, date }) => (
+                  ({ id, title, image, description, _count, date, tags }) => (
                     <div
                       key={id}
                       className="flex flex-col border rounded-lg overflow-hidden shadow-lg"
@@ -149,19 +149,14 @@ const CreateUI = ({
                           />
                         </Link>
                       )}
-                      <div className="p-6">
+                      <div className=" flex flex-col justify-between p-6">
                         <small>Created at {formatDate(date)} </small>
                         <h2 className="text-xl font-semibold mt-2">{title}</h2>
                         <p className="text-gray-600 mt-2">{description}</p>
                         <br />
                         <br />
                         <div className="flex flex-row w-full justify-between">
-                          <small>
-                            Seller:{" "}
-                            {seller?.name &&
-                              seller.name.charAt(0).toUpperCase() +
-                                seller.name.slice(1)}
-                          </small>{" "}
+                          <small>Tags: {tags.join(", ")} </small>
                           <small className="pl-28">
                             Bids: {_count?.bids || 0}
                           </small>{" "}
@@ -229,7 +224,7 @@ CreateUI.propTypes = {
   formatDate: PropTypes.func.isRequired,
   parsedListings: PropTypes.array.isRequired,
   handleLoadMore: PropTypes.func.isRequired,
-  isButtonLoading: PropTypes.boolean,
+  isButtonLoading: PropTypes.bool,
   displayCount: PropTypes.number,
 };
 
