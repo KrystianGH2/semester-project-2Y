@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CreateUI from "./createListingUi";
 
-
 function Create() {
   // State to manage form data
   const [displayCount, setDisplayCount] = useState(20);
@@ -32,7 +31,7 @@ function Create() {
 
     // Special handling for tags input
     if (name === "tags") {
-      const tagsArray = value.split(" ,").map((tag) => tag.trim());
+      const tagsArray = value.split(" ").map((tag) => tag.trim());
       setFormData({ ...formData, [name]: tagsArray });
     } else {
       setFormData({ ...formData, [name]: value });
