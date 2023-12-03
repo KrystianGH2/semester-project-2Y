@@ -1,8 +1,11 @@
 import { useState } from "react";
 import CreateUI from "./createListingUi";
 
+
 function Create() {
   // State to manage form data
+  const [displayCount, setDisplayCount] = useState(20);
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -11,17 +14,34 @@ function Create() {
     date: "",
   });
 
+  const handleLoadMore = () => {
+    // Set loading state to true
+    setIsButtonLoading(true);
+
+    // Simulate a delay of 2 seconds
+    setTimeout(() => {
+      // Update displayCount and reset loading state
+      setDisplayCount((prevCount) => prevCount + 20);
+      setIsButtonLoading(false);
+    }, 2000);
+  };
+
   // Handle input changes in the form
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
     // Special handling for tags input
     if (name === "tags") {
-      const tagsArray = value.split(",").map((tag) => tag.trim());
+      const tagsArray = value.split(" ,").map((tag) => tag.trim());
       setFormData({ ...formData, [name]: tagsArray });
     } else {
       setFormData({ ...formData, [name]: value });
     }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   // Handle form submission
@@ -31,7 +51,7 @@ function Create() {
     try {
       // Make a POST request to create a new listing
       const res = await fetch(
-        "https://api.noroff.dev/api/v1/auction/listings",
+        "https://api.noroff.dev/api/v1/auction/listings?_count=true?_bids=true",
         {
           method: "POST",
           headers: {
@@ -84,11 +104,18 @@ function Create() {
     }
   };
 
+  const parsedListings = JSON.parse(localStorage.getItem("myListings"));
+  console.log(">>>>>>>>parsed", parsedListings);
   return (
     <CreateUI
+      parsedListings={parsedListings}
       formData={formData}
+      formatDate={formatDate}
       handleInputChange={handleInputChange}
       handleOnSubmit={handleOnSubmit}
+      handleLoadMore={handleLoadMore}
+      isButtonLoading={isButtonLoading}
+      displayCount={displayCount}
     />
   );
 }
