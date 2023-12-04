@@ -7,6 +7,32 @@ function Listings() {
   const [listings, setListings] = useState([]);
   const [displayCount, setDisplayCount] = useState(20);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
+  const [sortOption, setSortOption] = useState("created");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [originalListings, setOriginalListings] = useState([]); // Keep a copy of the original listings for local sorting
+
+  const sortListings = (option) => {
+    const sortedListings = [...originalListings];
+
+    sortedListings.sort((a, b) => {
+      if (option === "created") {
+        return new Date(b.created) - new Date(a.created); // Newest first
+      } else if (option === "oldest") {
+        return new Date(a.created) - new Date(b.created);
+      } else if (option === "highestBids") {
+        return b._count.bids - a._count.bids;
+      } else if (option === "lowestBids") {
+        return a._count.bids - b._count.bids;
+      } else if (option === "titleAZ") {
+        return a.title.localeCompare(b.title);
+      } else if (option === "titleZA") {
+        return b.title.localeCompare(a.title);
+      }
+      return 0;
+    });
+
+    setListings(sortedListings);
+  };
 
   useEffect(() => {
     const getListings = async () => {
@@ -14,12 +40,30 @@ function Listings() {
         const res = await fetch(url);
         const data = await res.json();
         setListings(data);
+        setOriginalListings(data);
       } catch (e) {
         console.error(e);
       }
     };
     getListings();
   }, [url]);
+
+  useEffect(() => {
+    sortListings(sortOption);
+  }, [sortOption]);
+
+  const handleSortChange = (e) => {
+    const option = e.target.value;
+    setSortOption(option);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const filteredListings = originalListings.filter((listing) =>
+      listing.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setListings(filteredListings);
+  };
 
   const handleLoadMore = () => {
     // Set loading state to true
@@ -55,12 +99,75 @@ function Listings() {
         </div>
       </div>
 
-      <div className="bg-white py-24 sm:py-32 ">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8 mt-36">
+        <form onSubmit={handleSearch}>
+          <label
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Search Mockups, Logos..."
+              required
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div className="bg-white py-24 sm:py-28 ">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
+          <div className="mx-auto max-w-5xl lg:mx-0 flex items-center justify-between">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Listings
             </h1>
+            <div className=" mt-1 w-52 flex flex-row justify-between items-center">
+              <label
+                htmlFor="sortSelect"
+                className="text-base font-medium text-gray-900"
+              >
+                Sort by:
+              </label>
+              <select
+                id="sortSelect"
+                className="ml-2 p-[4px] border rounded"
+                value={sortOption}
+                onChange={handleSortChange}
+              >
+                <option value="created">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="highestBids">Highest Bids</option>
+                <option value="lowestBids">Lowest Bids</option>
+                <option value="titleAZ">A-Z</option>
+                <option value="titleZA">Z-A</option>
+              </select>
+            </div>
           </div>
 
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
