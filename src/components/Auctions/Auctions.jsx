@@ -50,6 +50,7 @@ function Listings() {
 
   useEffect(() => {
     sortListings(sortOption);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOption]);
 
   const handleSortChange = (e) => {
