@@ -133,9 +133,12 @@ const CreateUI = ({
               parsedListings
                 .slice(0, displayCount)
                 .map(
-                  ({ id, title, image, description, _count, date, tags }) => (
+                  (
+                    { id, title, image, description, _count, date, tags },
+                    index
+                  ) => (
                     <div
-                      key={id}
+                      key={id || index}
                       className="flex flex-col border rounded-lg overflow-hidden shadow-lg"
                     >
                       <img
