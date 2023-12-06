@@ -103,107 +103,141 @@ function Item() {
       : null;
 
   return (
-    <div className="flex flex-col">
-      <h2>User Profile</h2>
-      {userData && (
-        <div>
-          <p>Title: {userData.title}</p>
-          <p>Title: {calculateTimeLeft(userData.endsAt)}</p>
-          <p>Description: {userData.description}</p>
-          <img src={userData.media} alt={userData.title} />
-          <p>Bid Amount: {bidAmount}</p>
-          {errorResponse ? (
-            <input
-              className=" rounded-sm border-2 border-red-600 "
-              type="number"
-              placeholder="Enter Bid Amount"
-              value={bidAmount}
-              onChange={(e) => setBidAmount(e.target.value)}
+    <>
+      <div className="mx-auto max-w-[1225px] px-6 lg:px-8 mt-36">
+        <div className="flex flex-col">
+          <h1 className="font-bold text-3xl">User Profile</h1>
+
+          {/* <div className="flex flex-col md:flex-row w-full">
+            <img
+              className="xl:w-3/4  md:max-w-md max-w-lg "
+              src={userData.media}
+              alt={userData.title}
             />
-          ) : (
-            <input
-              className=" rounded border border-black"
-              type="number"
-              placeholder="Enter Bid Amount"
-              value={bidAmount}
-              onChange={(e) => setBidAmount(e.target.value)}
-            />
-          )}
-          {/* <input
+
+            <div className="md:px-6 py-6 md:py-0">
+              <p className="font-black tracking-wide  text-3xl">
+                Title: {userData.title}
+              </p>
+              <p className="py-2">
+                {" "}
+                <big className="text-[18px] font-medium">Seller :</big>{" "}
+                {userData.seller.name.charAt(0).toUpperCase() +
+                  userData.seller.name.slice(1)}
+              </p>
+              <p className="py-2">
+                <big className="text-[18px] font-bold">Description :{" "}</big>
+                {userData.description}
+              </p>
+              <p className="py-2">
+                <big className="text-[18px] font-bold">Time Left :</big>{" "}
+                {calculateTimeLeft(userData.endsAt)}
+              </p>
+            </div>
+          </div> */}
+
+          {userData && (
+            <div>
+              <p>Title: {userData.title}</p>
+              <p>Title: {calculateTimeLeft(userData.endsAt)}</p>
+              <p>Description: {userData.description}</p>
+              <img className="w-96" src={userData.media} alt={userData.title} />
+              <p>Bid Amount: {bidAmount}</p>
+              <p>Seller: {userData.seller.name}</p>
+              {errorResponse ? (
+                <input
+                  className=" rounded-sm border-2 border-red-600 "
+                  type="number"
+                  placeholder="Enter Bid Amount"
+                  value={bidAmount}
+                  onChange={(e) => setBidAmount(e.target.value)}
+                />
+              ) : (
+                <input
+                  className=" rounded border border-black"
+                  type="number"
+                  placeholder="Enter Bid Amount"
+                  value={bidAmount}
+                  onChange={(e) => setBidAmount(e.target.value)}
+                />
+              )}
+              {/* <input
             type="number"
             placeholder="Enter Bid Amount"
             value={bidAmount}
             onChange={(e) => setBidAmount(e.target.value)}
           /> */}
 
-          <div>
-            <Popover
-              isOpen={isPopoverOpen}
-              position={["right"]}
-              content={() => (
-                <div className="border p-4 rounded bg-slate-100">
-                  <h3 className="font-medium text-md">Oops! You are not logged in.</h3>
-                  <p>
-                    Please log in to place a bid.
-                  </p>
+              <div>
+                <Popover
+                  isOpen={isPopoverOpen}
+                  position={["right"]}
+                  content={() => (
+                    <div className="border p-4 rounded bg-slate-100">
+                      <h3 className="font-medium text-md">
+                        Oops! You are not logged in.
+                      </h3>
+                      <p>Please log in to place a bid.</p>
+                    </div>
+                  )}
+                >
+                  {!isUserLoggedIn ? (
+                    <button
+                      type="button"
+                      onMouseEnter={() => setIsPopoverOpen(true)}
+                      onMouseLeave={() => setIsPopoverOpen(false)}
+                      className="text-white mb-3 me-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Right popover
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleBidSubmit}
+                      type="button"
+                      className="text-white mb-3 me-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Right popover
+                    </button>
+                  )}
+                </Popover>
+              </div>
+
+              {showPopUp && errorResponse && (
+                <div className="popup">
+                  <div className="popup-content">
+                    <span
+                      className="close cursor-pointer"
+                      onClick={() => setShowPopUp(false)}
+                    >
+                      &times;
+                    </span>
+                    <p className="bg-black border-red-700 rounded flex justify-center items-center w-full h-14 text-white">{`${errorResponse.errors[0].message}`}</p>
+                  </div>
                 </div>
               )}
-            >
-              {!isUserLoggedIn ? (
-                <button
-                  type="button"
-                  onMouseEnter={() => setIsPopoverOpen(true)}
-                  onMouseLeave={() => setIsPopoverOpen(false)}
-                  className="text-white mb-3 me-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Right popover
-                </button>
-              ) : (
-                <button
-                  onClick={handleBidSubmit}
-                  type="button"
-                  className="text-white mb-3 me-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Right popover
-                </button>
-              )}
-            </Popover>
-          </div>
 
-          {showPopUp && errorResponse && (
-            <div className="popup">
-              <div className="popup-content">
-                <span
-                  className="close cursor-pointer"
-                  onClick={() => setShowPopUp(false)}
-                >
-                  &times;
-                </span>
-                <p className="bg-black border-red-700 rounded flex justify-center items-center w-full h-14 text-white">{`${errorResponse.errors[0].message}`}</p>
+              <div>
+                <h3>Bid Details</h3>
+                <section>
+                  <ul>
+                    <li>Total Bids: {userData._count.bids}</li>
+                    {/* Add other bid details if needed */}
+                    {highestBid && (
+                      <div>
+                        <p>Highest bid by: {highestBid.bidderName}</p>
+                        <p>Highest bid amount: {highestBid.amount}</p>
+                      </div>
+                    )}
+                  </ul>
+                </section>
               </div>
+
+              {/* Add other properties you want to display */}
             </div>
           )}
-
-          <div>
-            <h3>Bid Details</h3>
-            <section>
-              <ul>
-                <li>Total Bids: {userData._count.bids}</li>
-                {/* Add other bid details if needed */}
-                {highestBid && (
-                  <div>
-                    <p>Highest bid by: {highestBid.bidderName}</p>
-                    <p>Highest bid amount: {highestBid.amount}</p>
-                  </div>
-                )}
-              </ul>
-            </section>
-          </div>
-
-          {/* Add other properties you want to display */}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }
 
