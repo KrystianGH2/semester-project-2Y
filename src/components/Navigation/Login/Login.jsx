@@ -53,7 +53,23 @@ function LoginLogic() {
         localStorage.setItem("credits", data.credits);
         localStorage.setItem("avatar", data?.avatar);
 
+        const userName = localStorage.getItem("username", data.name);
+
         navigateToHome();
+
+        const response = await fetch(
+          `https://api.noroff.dev/api/v1/auction/profiles/${userName}?_listings=true`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+
+        const results = await response.json();
+        console.log(results);
+        console.log(results.listings);
+        localStorage.setItem("myListings", JSON.stringify(results.listings));
       } else {
         console.error("Login failed:", data);
         console.log(data.errors[0].message);

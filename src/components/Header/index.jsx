@@ -56,6 +56,7 @@ const Header = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("credits");
     localStorage.removeItem("avatar");
+    localStorage.removeItem("myListings");
     setIsLoggedIn(false);
   };
 
