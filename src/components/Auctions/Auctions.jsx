@@ -50,7 +50,7 @@ function Listings() {
 
   useEffect(() => {
     sortListings(sortOption);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOption]);
 
   const handleSortChange = (e) => {
@@ -198,7 +198,13 @@ function Listings() {
                       </Link>
                       <div className="p-6">
                         <small>Created at {formatDate(created)}</small>
-                        <h2 className="text-xl font-semibold mt-2">{title}</h2>
+                        <h2 className="text-xl font-semibold mt-2">
+                          {title && (
+                            <span>
+                              {title.charAt(0).toUpperCase() + title.slice(1)}
+                            </span>
+                          )}
+                        </h2>
                         <p className="text-gray-600 mt-2">{description}</p>
                         <br />
                         <br />
