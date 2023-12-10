@@ -147,9 +147,13 @@ const CreateUI = ({
                         alt={title}
                       />
                       <div className=" flex flex-col p-6">
-                        <small>Created at {formatDate(date)} </small>
-                        <h2 className="text-xl font-semibold mt-2">{title}</h2>
-                        <p className="text-gray-600 mt-2">{description}</p>
+                        <small className="py-2">
+                          Ends at {formatDate(date)}{" "}
+                        </small>
+                        <h2 className="text-xl font-bold mt-2">{title}</h2>
+                        <p className="text-gray-600 font-medium mt-2">
+                          {description}
+                        </p>
                         <br />
                         <br />
                         <div className="flex flex-row w-full justify-between">
@@ -170,7 +174,7 @@ const CreateUI = ({
               <button
                 disabled
                 type="button"
-                className="text-white bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+                className="text-white bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
               >
                 <svg
                   aria-hidden="true"
@@ -196,7 +200,7 @@ const CreateUI = ({
             <div className="flex items-center justify-center">
               <button
                 onClick={handleLoadMore}
-                className="mt-8 bg-blue-500 text-white px-4 py-2 rounded items-center justify-center hover:bg-orange-500"
+                className="mt-8 bg-orange-500 text-white px-4 py-2 rounded items-center justify-center hover:bg-[#FF8C00]"
               >
                 Load More
               </button>
