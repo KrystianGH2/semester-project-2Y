@@ -111,7 +111,7 @@ function Listings() {
               </p>
             </div>
           </div>
-          <div className="mx-auto max-w-3xl px-6 lg:px-8 mt-36">
+          <div className="mx-auto max-w-3xl px-6 lg:px-8 mt-36 ">
             <form onSubmit={handleSearch}>
               <label
                 htmlFor="default-search"
@@ -137,7 +137,7 @@ function Listings() {
                 <input
                   type="search"
                   id="default-search"
-                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-300 focus:border-gray-300"
                   placeholder="Search Mockups, Logos..."
                   required
                   value={searchQuery}
@@ -145,14 +145,14 @@ function Listings() {
                 />
                 <button
                   type="submit"
-                  className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 shadow-lg transition-all"
                 >
                   Search
                 </button>
               </div>
             </form>
           </div>
-          <div className="bg-white py-24 sm:py-28 ">
+          <div className=" py-24 sm:py-28">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
               <div className="mx-auto max-w-5xl lg:mx-0 flex items-center justify-between">
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -206,7 +206,7 @@ function Listings() {
                               alt={title}
                             />
                           </Link>
-                          <div className="p-6">
+                          <div className="p-6 flex flex-col h-full justify-between">
                             <small>Created at {formatDate(created)}</small>
                             <h2 className="text-xl font-semibold mt-2">
                               {title && (

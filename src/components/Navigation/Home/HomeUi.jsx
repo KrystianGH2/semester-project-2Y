@@ -68,7 +68,7 @@ const HomeUi = ({ latestListings, mostLikedListings, formatDate }) => (
                     alt={title}
                   />
                 </Link>
-                <div className="p-6">
+                <div className="p-6 flex flex-col h-full justify-between">
                   <small>Created at {formatDate(created)}</small>
                   <h2 className="text-xl font-semibold mt-2">
                     {title && (
