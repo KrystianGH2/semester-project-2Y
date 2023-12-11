@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import { profileDetails } from "../../lib/api";
+import coin from "../../assets/images/coin.png";
 
 function Profile() {
   const userName = localStorage.getItem("username");
   const [userData, setUserData] = useState(null);
   const [userCredits, setUserCredits] = useState(0);
-  const [listings, setListings] = useState("");
-
-  const handleOnClick = () => {
-    console.log("clicked");
-  };
 
   const handleOnSubmit = async (userName, event) => {
     event.preventDefault();
@@ -58,10 +54,7 @@ function Profile() {
         const data = await profileDetails(userName);
         setUserData(data);
 
-        // console.log(">>>>>>>>>>>>>>>>",data.credits)
         setUserCredits(data.credits); // Set the fetched data to the state
-        setListings(data.listings);
-        // console.log("Listings>>>>>>>", listings);
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
@@ -72,40 +65,39 @@ function Profile() {
   }, [userName]);
 
   return (
-    <div>
-      <h1 className="font-bold">Profile Page</h1>
-      {userData && (
-        <div>
-          {/* Display user details using the fetched data */}
-          <p>Name: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          <p>Email: {userCredits}</p>
-          <p>Email: {userData._count.listings}</p>
-          <div className="w-20">
-            <img src={userData.avatar} alt="" />
-          </div>
-
-          <div className="flex flex-row">
-            <form
-              onSubmit={(event) => handleOnSubmit(userName, event)}
-              className="flex flex-row space-y-6"
-              action="#"
-              method="PUT"
-            >
-              <input name="avatar" id="avatar" type="text" />
-              <button type="submit">Post</button>
-            </form>
-          </div>
-
-          {/* Add more details as needed */}
-          {listings.map((item) => (
-            <div key={item.id}>
-              <p>{item.title}</p>
-              <button onClick={handleOnClick}>Delete</button>
+    <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-28">
+      <div className="flex flex-col justify-center items-center text-center">
+        <h1 className="font-bold text-2xl tracking-wider pb-12">Profile</h1>
+        {userData && (
+          <div className="flex flex-col justify-center items-center border p-6">
+            <div className="w-20 flex justify-center items-center">
+              <img
+                className="border w-28 rounded-full items-center"
+                src={userData.avatar}
+                alt=""
+              />
             </div>
-          ))}
-        </div>
-      )}
+            <p>{userData.name}</p>
+            <p>@{userData.email}</p>
+            <span className="flex flex-row justify-center items-center">
+              {userCredits} <img className="w-5 ml-3" src={coin} alt="" />
+            </span>
+            <p>Email: {userData._count.listings}</p>
+
+            <div className="flex flex-row">
+              <form
+                onSubmit={(event) => handleOnSubmit(userName, event)}
+                className="flex flex-row space-y-6"
+                action="#"
+                method="PUT"
+              >
+                <input name="avatar" id="avatar" type="text" />
+                <button type="submit">Post</button>
+              </form>
+            </div>
+          </div>
+        )}{" "}
+      </div>
     </div>
   );
 }
