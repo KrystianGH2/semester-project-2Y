@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import HomeUi from "./homeUi";
+import HomeUi from "./HomeUi";
 import SkeletonMain from "../../skeleton/skeletonMain";
 
 const Home = () => {
