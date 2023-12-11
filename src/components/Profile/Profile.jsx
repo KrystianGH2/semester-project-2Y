@@ -69,11 +69,11 @@ function Profile() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-28">
-      <div className="flex flex-col justify-center items-center text-center">
+    <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-28 mb-28 ">
+      <div className="flex flex-col justify-center items-center text-center ">
         <h1 className="font-bold text-2xl tracking-wider pb-12">Profile</h1>
         {userData && (
-          <div className="flex flex-col justify-center items-center border rounded p-6 w-full max-w-2xl">
+          <div className="flex flex-col justify-center items-center border rounded p-6 w-full max-w-2xl shadow-lg">
             <div className="w-20 flex justify-center items-center">
               <img
                 className="border w-28 h-20 rounded-full items-center"
