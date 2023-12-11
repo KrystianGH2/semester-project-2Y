@@ -82,14 +82,23 @@ function Profile() {
               />
             </div>
             <p className=" font-medium pt-2 text-[#696969]">{userData.name}</p>
-            <p className=" font-medium pt-2 text-[#696969]">@{userData.email}</p>
+            <p className=" font-medium pt-2 text-[#696969]">
+              @{userData.email}
+            </p>
             <span className="flex flex-row justify-center items-center font-medium pt-2 text-[#696969] ">
               {userCredits} <img className="w-5 ml-3" src={coin} alt="" />
             </span>
-            <p className=" font-medium pt-2 text-[#696969]">Listings {userData._count.listings}</p>
+            <p className=" font-medium pt-2 text-[#696969]">
+              Listings {userData._count.listings}
+            </p>
 
             <div className="flex flex-row justify-center items-center">
-              <button className="text-white bg-orange-500 hover:bg-orange-400 hover:shadow-lg focus:ring-4 mt-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center transition me-2" onClick={openModal}>Change Avatar</button>
+              <button
+                className="text-white bg-orange-500 hover:bg-orange-400 hover:shadow-lg focus:ring-4 mt-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center transition me-2"
+                onClick={openModal}
+              >
+                Change Avatar
+              </button>
             </div>
           </div>
         )}
