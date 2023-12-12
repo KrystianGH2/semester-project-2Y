@@ -6,7 +6,6 @@ import Skeleton from "../skeleton";
 
 function Item() {
   const { itemId } = useParams();
-  console.log("itemId:", itemId);
   const url = `https://api.noroff.dev/api/v1/auction/listings/${itemId}?_seller=true&_bids=true`;
   const [userData, setUserData] = useState(null);
   const [bidAmount, setBidAmount] = useState(""); // State to store the bid amount
@@ -126,8 +125,6 @@ function Item() {
           </div>
 
           <div className="flex flex-col">
-            <h1 className="font-bold text-3xl">User Profile</h1>
-
             {userData && (
               <div className="flex flex-row object-cover border rounded-lg overflow-hidden shadow-lg p-6 ">
                 <div className=" flex w-full  flex-col md:flex-row ">
