@@ -1,13 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Header from "../../Header";
-import Footer from "../../Footer";
-import { Outlet } from "react-router";
 
 const HomeUi = ({ latestListings, mostLikedListings, formatDate }) => (
   <>
-  <Header />
-  <Outlet />
     <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-36">
       <div className="flex flex-col max-w-3xl gap-4">
         <h1 className="mb-4 text-4xl font-extrabold leading-none  tracking-tight text-[#333333] md:text-5xl lg:text-6xl dark:text-white ">
@@ -170,7 +165,6 @@ const HomeUi = ({ latestListings, mostLikedListings, formatDate }) => (
           )}
       </div>
     </div>
-    <Footer />
   </>
 );
 
