@@ -6,7 +6,7 @@ function Listings() {
   const url =
     "https://api.noroff.dev/api/v1/auction/listings?_active=true&_seller=true&_bids=true";
   const [listings, setListings] = useState([]);
-  const [displayCount, setDisplayCount] = useState(20);
+  const [displayCount, setDisplayCount] = useState(12);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [sortOption, setSortOption] = useState("created");
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,7 +79,7 @@ function Listings() {
     // Simulate a delay of 2 seconds
     setTimeout(() => {
       // Update displayCount and reset loading state
-      setDisplayCount((prevCount) => prevCount + 20);
+      setDisplayCount((prevCount) => prevCount + 12);
       setIsButtonLoading(false);
     }, 2000);
   };
@@ -96,13 +96,13 @@ function Listings() {
         <SkeletonMain count={6} />
       ) : (
         <>
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-28">
+          {/* <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-28">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                  Better Data
+                Welcome to BidBuddies,
                 </span>{" "}
-                Scalable AI.
+                Where Every Bid Unleashes Excitement!
               </h1>
               <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
                 Here at Flowbite we focus on markets where technology,
@@ -110,7 +110,7 @@ function Listings() {
                 economic growth.
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="mx-auto max-w-3xl px-6 lg:px-8 mt-36 ">
             <form onSubmit={handleSearch}>
               <label
@@ -154,7 +154,7 @@ function Listings() {
           </div>
           <div className=" py-24 sm:py-28">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="mx-auto max-w-5xl lg:mx-0 flex items-center justify-between">
+              <div className="mx-auto max-w-7xl lg:mx-0 flex items-center justify-between">
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   Listings
                 </h1>
