@@ -21,7 +21,7 @@ const HeaderUI = ({
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center">
             <img
-              className="h-[100px] w-auto"
+              className="h-[90px] w-auto"
               src={bidBuddies}
               alt="Bid Buddies"
             />
@@ -54,7 +54,7 @@ const HeaderUI = ({
                 <Link
                   key={index}
                   to={item.href}
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium"
+                  className="text-[#696969] hover:bg-[#eeeeee] transition-all hover:text-orange-400 rounded-md px-3 py-2 text-lg font-medium"
                 >
                   {item.name}
                 </Link>
@@ -120,13 +120,13 @@ const HeaderUI = ({
                   <>
                     <Link
                       to="/login"
-                      className="text-orange-400 bg-[#F6F5F2] hover:bg-gray-700 hover:text-white transition-all rounded-md mx-6 px-3 py-2 text-md font-medium"
+                      className="text-orange-400 bg-[#eeeeee] hover:bg-gray-1 hover:text-[#696969] hover:shadow-lg transition-all rounded-md mx-6 px-3 py-2 text-md font-medium"
                     >
                       Log In
                     </Link>
                     <Link
                       to="/register"
-                      className="text-white  bg-orange-500 hover:bg-gray-700 hover:text-white transition-all rounded-md px-3 py-2 text-md font-medium"
+                      className="text-white  bg-orange-500 hover:bg-orange-400 hover:shadow-lg hover:text-white transition-all rounded-md px-3 py-2 text-md font-medium"
                     >
                       Get started
                     </Link>
