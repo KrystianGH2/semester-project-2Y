@@ -1,7 +1,7 @@
 function Contact() {
   return (
-    <div>
-      <h1>Contact</h1>
+    <div className=" flex flex-col h-[60vh] justify-center items-center ">
+      <h1 className="tracking-widest font-extrabold text-5xl">COMING SOON</h1>
     </div>
   );
 }
