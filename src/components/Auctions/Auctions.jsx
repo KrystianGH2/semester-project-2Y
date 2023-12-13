@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import SkeletonMain from "../skeleton/skeletonMain";
 
 function Listings() {
-  const url =
-    "https://api.noroff.dev/api/v1/auction/listings?_active=true&_seller=true&_bids=true";
   const [listings, setListings] = useState([]);
   const [displayCount, setDisplayCount] = useState(12);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
@@ -12,7 +10,14 @@ function Listings() {
   const [searchQuery, setSearchQuery] = useState("");
   const [originalListings, setOriginalListings] = useState([]); // Keep a copy of the original listings for local sorting
   const [loading, setLoading] = useState(true);
+  const [showInactive, setShowInactive] = useState(false);
 
+  const url = `https://api.noroff.dev/api/v1/auction/listings?_seller=true&_bids=true${
+    showInactive ? "&_active=false" : "&_active=true"
+  }`;
+  const handleInactivePost = () => {
+    setShowInactive(!showInactive);
+  };
   const sortListings = (option) => {
     const sortedListings = [...originalListings];
 
@@ -30,6 +35,8 @@ function Listings() {
           return a.title.localeCompare(b.title);
         case "titleZA":
           return b.title.localeCompare(a.title);
+        case "inactive":
+          return new Date(b.inactiveAt) - new Date(a.inactiveAt);
         default:
           return 0;
       }
@@ -169,14 +176,22 @@ function Listings() {
                     id="sortSelect"
                     className="ml-2 p-[4px] border rounded"
                     value={sortOption}
-                    onChange={handleSortChange}
+                    onChange={(e) => {
+                      handleSortChange(e);
+                      if (e.target.value === "inactive") {
+                        handleInactivePost();
+                      }
+                    }}
                   >
-                    <option value="created">Newest</option>
+                    <option className="" value="created">
+                      Newest
+                    </option>
                     <option value="oldest">Oldest</option>
                     <option value="highestBids">Highest Bids</option>
                     <option value="lowestBids">Lowest Bids</option>
                     <option value="titleAZ">A-Z</option>
                     <option value="titleZA">Z-A</option>
+                    <option value="inactive">Inactive</option>
                   </select>
                 </div>
               </div>
