@@ -85,7 +85,7 @@ const HomeUi = ({ latestListings, mostLikedListings, formatDate }) => (
               >
                 <Link to={`/listings/${id}`}>
                   <img
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover hover:scale-105 transition-all"
                     src={media}
                     alt={title}
                   />
