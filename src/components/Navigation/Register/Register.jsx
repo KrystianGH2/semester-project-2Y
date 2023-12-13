@@ -89,9 +89,9 @@ function Register() {
             {isSuccess ? (
               <section className="w-full flex  justify-center">
                 <p className="text-center text-green-900 font-semibold text-xl h-60 ">
-                  👋 Welcome {data?.name}{" "}
-                  <span className="text-orange-500">RandomUser</span> . You will
-                  now redirect to the login page!
+                  👋 Welcome{" "}
+                  <span className="text-orange-500">{data?.name}</span> . You
+                  will now redirect to the login page!
                 </p>
               </section>
             ) : (
