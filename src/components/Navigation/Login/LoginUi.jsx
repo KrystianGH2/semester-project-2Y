@@ -20,9 +20,10 @@ function LoginUI({
         </div>
         <div className="mt-10 mx-auto w-full max-w-sm sm:w-96">
           {isSuccess ? (
-            <section>
-              <p className="text-center text-green-900">
-                👋 Hi {data?.name}. You will now redirect to the home page!
+            <section className="w-full flex  justify-center">
+              <p className="text-center text-green-900 font-semibold text-xl h-60 ">
+                👋 Hi <span className="text-orange-500">{data?.name}</span> .
+                You will now redirect to the home page!
               </p>
             </section>
           ) : (
