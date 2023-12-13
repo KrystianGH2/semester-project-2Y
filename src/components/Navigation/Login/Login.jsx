@@ -8,6 +8,7 @@ function LoginLogic() {
   const [emailPlaceholder, setEmailPlaceholder] = useState("");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -88,6 +89,11 @@ function LoginLogic() {
     setPasswordPlaceholder(`${Math.floor(Math.random() * 10000000)}Pass.word`);
   }, []);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
   return (
     <LoginUi
       isSuccess={isSuccess}
@@ -96,6 +102,8 @@ function LoginLogic() {
       passwordPlaceholder={passwordPlaceholder}
       errorMessage={errorMessage}
       handleOnSubmit={handleOnSubmit}
+      togglePasswordVisibility={togglePasswordVisibility}
+      showPassword={showPassword}
     />
   );
 }
