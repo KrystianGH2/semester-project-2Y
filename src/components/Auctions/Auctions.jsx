@@ -145,7 +145,7 @@ function Listings() {
                   type="search"
                   id="default-search"
                   className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-300 focus:border-gray-300"
-                  placeholder="Search Mockups, Logos..."
+                  placeholder="Search for items..."
                   required
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -216,7 +216,7 @@ function Listings() {
                         >
                           <Link to={`/listings/${id}`}>
                             <img
-                              className="w-full h-48 object-cover"
+                              className="w-full h-48 object-cover hover:scale-105 transition-all"
                               src={media}
                               alt={title}
                             />
