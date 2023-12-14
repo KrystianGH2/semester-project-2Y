@@ -69,8 +69,7 @@ function Create() {
 
       // Check if the request was successful
       if (!res.ok) {
-        const errorData = await res.json();
-        console.error(`Error: ${errorData.message}`);
+        alert("Failed to create listing. Please try again!")
       } else {
         // Display success message
         alert("Listing created successfully");
