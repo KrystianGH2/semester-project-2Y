@@ -33,10 +33,9 @@ const Header = () => {
 
         if (response.ok) {
           const userData = await response.json();
-          console.log(userData);
+          setIsLoggedIn(true);
           const userCredits = userData.credits;
           setGetUserCredits(userCredits);
-          setIsLoggedIn(true);
         } else {
           console.error("Failed to fetch user details");
         }
@@ -51,12 +50,18 @@ const Header = () => {
   }, [userName]);
 
   const logOut = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("username");
-    localStorage.removeItem("credits");
-    localStorage.removeItem("avatar");
-    localStorage.removeItem("myListings");
+    // Clear user-related data from localStorage
+    const itemsToRemove = [
+      "access_token",
+      "email",
+      "username",
+      "credits",
+      "avatar",
+      "myListings",
+    ];
+
+    itemsToRemove.forEach((item) => localStorage.removeItem(item));
+
     setIsLoggedIn(false);
   };
 

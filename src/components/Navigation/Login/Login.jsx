@@ -43,7 +43,6 @@ function LoginLogic() {
       );
 
       const data = await res.json();
-      console.log(data);
       setData(data);
       setIsSuccess(res.ok);
 
@@ -68,12 +67,9 @@ function LoginLogic() {
         );
 
         const results = await response.json();
-        console.log(results);
-        console.log(results.listings);
         localStorage.setItem("myListings", JSON.stringify(results.listings));
       } else {
-        console.error("Login failed:", data);
-        console.log(data.errors[0].message);
+        alert("Login failed:", data.errors[0].message);
         setErrorMessage(data.errors[0].message); // Set error message
       }
     } catch (err) {
