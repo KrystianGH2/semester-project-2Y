@@ -46,9 +46,9 @@ This project aims to create a fully responsive auction website using web technol
 ## Optional Tasks
 
 ### End-to-End Testing
-- [ ] Write end-to-end tests for the login user journey.
-- [ ] Write end-to-end tests for non-registered users searching through listings.
-- [ ] Write end-to-end tests for registered users adding bids to another user's listing.
+- [x] Write end-to-end tests for the login user journey.
+- [x] Write end-to-end tests for non-registered users searching through listings.
+- [x] Write end-to-end tests for registered users adding bids to another user's listing.
 - [ ] Write end-to-end tests for registered users creating bids on a listing.
 
 ### Environment Setup:
