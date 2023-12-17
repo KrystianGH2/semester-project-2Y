@@ -121,9 +121,9 @@ npm run dev
 ## Documentation and Reporting
 - [x] Thoroughly describe the project in the readme.md file.
 - [x] Include setup instructions and how to run the project locally.
-- [ ] Provide any special instructions for testers.
-- [ ] Include required links in the Moodle delivery window using the provided template format.
-- [ ] Prepare a report summarizing your project.
+- [x] Provide any special instructions for testers.
+- [x] Include required links in the Moodle delivery window using the provided template format.
+- [x] Prepare a report summarizing your project.
 
 # Project Report Summary
 
