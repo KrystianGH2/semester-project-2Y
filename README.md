@@ -1,4 +1,4 @@
-# Auction Website Project 
+# Semester Project Y2
 
 ## Overview
 This project aims to create a fully responsive auction website using web technologies such as HTML, CSS, and JavaScript. The primary goal is to apply the skills acquired over the past three semesters and build a functional front-end application that interacts with an existing API.
