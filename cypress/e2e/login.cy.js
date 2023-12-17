@@ -10,15 +10,15 @@ describe("Logging in", () => {
     );
 
     //getting the id of the email input
-    cy.get("#email").type("random@stud.noroff.no");
+    cy.get("#email").type("randomuser_321@stud.noroff.no");
 
     //  checks that the input value of the email has been updated
-    cy.get("#email").should("have.value", "random@stud.noroff.no");
+    cy.get("#email").should("have.value", "randomuser_321@stud.noroff.no");
 
-    cy.get("#password").type("random123");
+    cy.get("#password").type("random321");
 
     //  checks that the input value of the password has been updated
-    cy.get("#password").should("have.value", "random123");
+    cy.get("#password").should("have.value", "random321");
 
     cy.get('[type="submit"]').click();
   });
